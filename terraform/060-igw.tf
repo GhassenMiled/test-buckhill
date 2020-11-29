@@ -1,3 +1,4 @@
+# Create Internet gateway
 resource "aws_internet_gateway" "buckhill-test-vpc-igw" {
   vpc_id = aws_vpc.buckhill-test-vpc.id
 
@@ -6,6 +7,7 @@ resource "aws_internet_gateway" "buckhill-test-vpc-igw" {
   }
 }
 
+# Create route for internet
 resource "aws_route" "buckhill-test-internet-gw-route" {
   route_table_id         = aws_route_table.buckhill-test-route-table.id
   gateway_id             = aws_internet_gateway.buckhill-test-vpc-igw.id

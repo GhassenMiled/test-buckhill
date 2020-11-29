@@ -1,9 +1,10 @@
+# Create key pair to connect to ec2
 resource "aws_key_pair" "buckhill-test-key-pair" {
   key_name   = var.buckhill-test-key-pair-name
   public_key = var.buckhill-test-key-pair-public-key
 }
 
-
+# Find latest Ubuntu 18.04 ami
 data "aws_ami" "buckhill-test-ubuntu-ami" {
   most_recent = true
   owners = [var.canonical-account-number]
@@ -25,6 +26,7 @@ data "aws_ami" "buckhill-test-ubuntu-ami" {
 
 }
 
+# Create ec2 instance
 resource "aws_instance" "buckhill-test-ec2-instance" {
   ami           = data.aws_ami.buckhill-test-ubuntu-ami.id
   instance_type = var.buckhill-test-instance-type
@@ -38,6 +40,7 @@ resource "aws_instance" "buckhill-test-ec2-instance" {
   
 }
 
+# Create EIP address for ec2 instance
 resource "aws_eip" "buckhill-test-eip" {
   instance = aws_instance.buckhill-test-ec2-instance.id
   vpc      = true

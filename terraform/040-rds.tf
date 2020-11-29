@@ -1,3 +1,4 @@
+# Create RDS database
 resource "aws_db_instance" "buckhill-test-rds" {
   allocated_storage    = 20
   storage_type         = "gp2"

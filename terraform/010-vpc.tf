@@ -1,4 +1,4 @@
-
+# Create vpc
 resource "aws_vpc" "buckhill-test-vpc" {
   cidr_block           = var.buckhill-test-vpc-cidr
   enable_dns_support   = true
@@ -9,6 +9,7 @@ resource "aws_vpc" "buckhill-test-vpc" {
   }
 }
 
+# Create frontend subnet
 resource "aws_subnet" "buckhill-test-front-subnet" {
    cidr_block        = var.buckhill-test-front-subnet-cidr
    vpc_id            = aws_vpc.buckhill-test-vpc.id
@@ -19,6 +20,7 @@ resource "aws_subnet" "buckhill-test-front-subnet" {
    }
  }
 
+# Create backend subnet
 resource "aws_subnet" "buckhill-test-back-subnet" {
    cidr_block        = var.buckhill-test-back-subnet-cidr
    vpc_id            = aws_vpc.buckhill-test-vpc.id
@@ -29,9 +31,10 @@ resource "aws_subnet" "buckhill-test-back-subnet" {
    }
  }
 
+# Create rds-db subnet group
  resource "aws_db_subnet_group" "buckhill-test-db-subnet" {
   name       = "buckhill-test-db-subnet"
-  subnet_ids = [aws_subnet.buckhill-test-front-subnet.id,aws_subnet.buckhill-test-back-subnet.id]
+  subnet_ids = [aws_subnet.buckhill-test-back-subnet.id,aws_subnet.buckhill-test-front-subnet.id]
 
   tags = {
     Name = "buckhill-test-db-subnet"

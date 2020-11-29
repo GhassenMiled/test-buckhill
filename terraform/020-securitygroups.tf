@@ -1,3 +1,4 @@
+# Create ec2 security group
 resource "aws_security_group" "buckhill-test-ec2-sg" {
   name        = "buckhill-test-ec2-sg"
   description = "buckhill test ec2 security group"
@@ -12,6 +13,7 @@ resource "aws_security_group" "buckhill-test-ec2-sg" {
   }
 }
 
+# Create rds-db security group
 resource "aws_security_group" "buckhill-test-rds-sg" {
   name        = "buckhill-test-rds-sg"
   description = "buckhill test RDS security group"
@@ -26,6 +28,7 @@ resource "aws_security_group" "buckhill-test-rds-sg" {
   }
 }
 
+# Create ingress allow rule to connect from ec2 to rds
 resource "aws_security_group_rule" "buckhill-test-sg-allow-ingress-ec2-rule" {
   type            = "ingress"
   protocol        = "tcp"
@@ -36,7 +39,7 @@ resource "aws_security_group_rule" "buckhill-test-sg-allow-ingress-ec2-rule" {
 }
 
 
-
+# Create SSH ingress allow rule to connect to ec2
 resource "aws_security_group_rule" "buckhill-test-ec2-sg-allow-ingress-ssh-rule" {
   type            = "ingress"
   protocol        = "tcp"
@@ -46,6 +49,7 @@ resource "aws_security_group_rule" "buckhill-test-ec2-sg-allow-ingress-ssh-rule"
   security_group_id = aws_security_group.buckhill-test-ec2-sg.id
 }
 
+# Create HTTP ingress allow rule to connect to ec2
 resource "aws_security_group_rule" "buckhill-test-ec2-sg-allow-ingress-web-rule" {
   type            = "ingress"
   protocol        = "tcp"
@@ -55,6 +59,7 @@ resource "aws_security_group_rule" "buckhill-test-ec2-sg-allow-ingress-web-rule"
   security_group_id = aws_security_group.buckhill-test-ec2-sg.id
 }
 
+# Create Internet egress allow rule for ec2 
 resource "aws_security_group_rule" "buckhill-test-ec2-sg-allow-egress-rule" {
   type            = "egress"
   protocol        = "-1"
