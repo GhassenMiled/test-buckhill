@@ -3,4 +3,4 @@
 wp_db_name: mydb
 wp_db_user: user
 wp_db_password: Azerty123456
-wp_db_host: terraform-20201129141203058700000001.cteplvctxuc2.us-east-1.rds.amazonaws.com
+wp_db_host: terraform-xxx.xxx.rds.amazonaws.com

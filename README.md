@@ -3,7 +3,7 @@
 ## **Architecture of EC2/Wordpress Instance with RDS:**
 
 <p align="center">
-<img src="https://i.ibb.co/pLNYGG4/1.png" />
+<img src="https://i.ibb.co/kxbdmkF/1.png" />
 </p>
 
 **Note:**
@@ -18,8 +18,8 @@ This repository contains terraform and ansible code :
   - 2 subnets with two availability zones
   - DB subnet group 
   - 2 security groups with 4 rules for ec2 & rds db
-  - RDS instance (mysql/cdb.t2.micro/20Gb)
-  - Ec2 instance (t2.micro) with key pair and EIP address
+  - RDS instance (mysql/db.t2.micro/20Gb)
+  - EC2 instance (t2.micro) with key pair and EIP address
   - Internet Gateway
   - Route table & internet route associated with 2 subnets
 
@@ -32,11 +32,11 @@ This repository contains terraform and ansible code :
   - Omit Nginx server token and PHP version
  
 
-## Clone cloud_azure reposiroty 
+## Clone test-buckhill reposiroty 
 
 cd ~
 
-git clone 
+git clone https://github.com/GhassenMiled/test-buckhill.git
 
 ## Set credentials
 
@@ -49,7 +49,7 @@ git clone
 
 ### Source credentials 
 
-Create .aws directory under $HOME and simply touch ~/.aws/credentials:
+Create .aws directory under $HOME, simply touch ~/.aws/credentials and provide your credentials:
 
     mkdir ~/.aws
     touch ~/.aws/credentials
@@ -62,14 +62,16 @@ Create .aws directory under $HOME and simply touch ~/.aws/credentials:
 
 save the file and exit.
 
-## Build environment
+## Build the environment
 
 ## Step 1 : Terraform 
 
-**Don't forget to verify your tfvars before building:**
+**Don't forget to verify your tfvars before building !!**
 
 **Note :**
+
 **- Provide your SSH public key**
+
 **- Check RDS Credentials (you can keep default values)**
 
 ### Apply terraform
@@ -81,25 +83,41 @@ save the file and exit.
 
 ## Step 2 : Ansible 
 
-**Don't forget to verify your inventory and variables files :**
+**Don't forget to verify your inventory and variables files !!**
 
 **Note :**
 
 **- Provide your EC2 EIP address in the inventory file (EIP is provided as terraform output)**
+**- Check your private SSH key path**
 
     cd ~/test-buckhill/ansible/
     nano inv.d/inventory
 
+    [webservers]
+    X.Y.W.Z
+
+    [all:vars]
+    ansible_user=ubuntu
+    ansible_ssh_private_key_file=~/.ssh/id_rsa
+
 Change X.Y.W.Z with your EIP and save.
 
 **- Provide your RDS Endpoint in the variables file (RDS Endpoint is provided as terraform output)**
+
     cd ~/test-buckhill/ansible/
     wp-rds-vars.yml
+
+    wp_db_name: mydb
+    wp_db_user: user
+    wp_db_password: Azerty123456
+    wp_db_host: terraform-xxx.xxx.rds.amazonaws.com
 
 
 Change your wp_db_host with your rds endpoint (terraform-xxxx.xxx.rds.amazonaws.com)
 
-Change wp_db_name, wp_db_user and wp_db_password. These credentials must be the same in terraform.tfvars.
+Change wp_db_name, wp_db_user and wp_db_password. 
+
+**These credentials must be the same in terraform.tfvars**
 
 Save and exit.
 
@@ -145,9 +163,11 @@ Now, you will be directed to your dashboard
 <img src="https://i.ibb.co/MhDygtq/7.png" />
 </p>
 
-Now, Check that your PHP and Nginx versions are omitted.
+
+**Now, Check that your PHP and Nginx versions are omitted.**
 
 For Nginx, /etc/nginx/nginx.conf contains the parameter (server_tokens  off;)
+
 For PHP, /etc/php/7.2/fpm/php.ini contains the parameter (expose_php = Off)
 
 
@@ -165,7 +185,7 @@ For PHP, /etc/php/7.2/fpm/php.ini contains the parameter (expose_php = Off)
 
 
 
-## Clean credentials
+## Destroy the environment
 Once all previous steps are successful, you can destroy the environment and clear your credentials.
 
     cd ~/test-buckhill/terraform/
