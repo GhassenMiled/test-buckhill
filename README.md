@@ -3,14 +3,14 @@
 ## **Architecture of EC2/Wordpress Instance with RDS:**
 
 <p align="center">
-<img src="https://i.ibb.co/kxbdmkF/1.png" />
+<img src="https://i.ibb.co/kxbdmkF/1.pn g" />
 </p>
 
 **Note:**
 
 -	All terraform resources are in N. Virginia (us-east-1)
 -	RDS credentials must be omitted ans secured (eg: environmental variables). 
-- **For testing purposes, we have used this credentials as terraform variables.**
+- **For testing purposes, we have used this credentials as terraform/ansible variables.**
 
 This repository contains terraform and ansible code : 
 - Terraform code will create :
