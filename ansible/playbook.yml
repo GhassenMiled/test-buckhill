@@ -1,0 +1,11 @@
+---
+- hosts: all
+  become: yes
+  vars_files:
+  - wp-rds-vars.yml
+  roles:
+  - os-update
+  - nginx
+  - php
+  - wordpress
+

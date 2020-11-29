@@ -1,0 +1,11 @@
+---
+# tasks for OS-update
+
+- name: os-update - package update (apt)
+  apt: update_cache=yes cache_valid_time=3600
+
+- name: os-update - package upgrade (apt)
+  apt: upgrade=dist
+
+- name: os-update - autoremove (apt)
+  apt: autoremove=yes
