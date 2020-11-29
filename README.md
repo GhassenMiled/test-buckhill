@@ -113,7 +113,7 @@ Change X.Y.W.Z with your EIP and save.
 **- Provide your RDS Endpoint in the variables file (RDS Endpoint is provided as terraform output)**
 
     cd ~/test-buckhill/ansible/
-    wp-rds-vars.yml
+    nano wp-rds-vars.yml
 
     wp_db_name: mydb
     wp_db_user: user
