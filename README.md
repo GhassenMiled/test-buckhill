@@ -24,7 +24,7 @@ This repository contains terraform and ansible code :
   - Route table & internet route associated with 2 subnets
 
 
-- Ansible code will create :
+- Ansible code will :
   - Update OS
   - Install Nginx/PHP/Wordpress
   - Configure Nginx & wordpress 
