@@ -3,7 +3,7 @@
 ## **Architecture of EC2/Wordpress Instance with RDS:**
 
 <p align="center">
-<img src="https://i.ibb.co/kxbdmkF/1.pn g" />
+<img src="https://i.ibb.co/kxbdmkF/1.png" />
 </p>
 
 **Note:**
