@@ -88,6 +88,7 @@ save the file and exit.
 **Note :**
 
 **- Provide your EC2 EIP address in the inventory file (EIP is provided as terraform output)**
+
 **- Check your private SSH key path**
 
     cd ~/test-buckhill/ansible/
