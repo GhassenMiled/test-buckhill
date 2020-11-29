@@ -3,7 +3,7 @@
 ## **Architecture of EC2/Wordpress Instance with RDS:**
 
 <p align="center">
-<img src="https://i.ibb.co/kxbdmkF/1.png" />
+<img src="https://i.ibb.co/kxbdmkF/1.pn g" />
 </p>
 
 **Note:**
@@ -72,7 +72,14 @@ save the file and exit.
 
 **- Provide your SSH public key**
 
+    buckhill-test-key-pair-public-key = "ssh-rsa ..."
+
 **- Check RDS Credentials (you can keep default values)**
+
+    # Specify RDS informations
+    buckhill-test-rds-db-name   = "mydb"
+    buckhill-test-rds-user-name = "user"
+    buckhill-test-rds-user-password  = "Azerty123456"
 
 ### Apply terraform
 
